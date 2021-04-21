@@ -1,0 +1,150 @@
+.homePage{
+    position: fixed;
+    z-index: 2;
+    padding-bottom: 20px;
+    top:10%;
+    left:17%;
+    width:83%;
+    height: 80%;
+    background-color:rgb(18,18,18);
+    box-sizing: border-box;
+    font-family: spotify-circular,spotify-circular-cyrillic,spotify-circular-arabic,spotify-circular-hebrew,Helvetica Neue,helvetica,arial,Hiragino Kaku Gothic Pro,Meiryo,MS Gothic,sans-serif;
+    letter-spacing: normal;
+    text-transform: none;
+    color: #fff;
+    overflow: auto;
+}
+.homePage .greeting
+{
+    color: #fff;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 60px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    font-size: 29px;
+    font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 36px;
+    text-transform: none;
+}
+.homePage::-webkit-scrollbar{
+    width:0px
+}
+.noMatch
+{
+    padding:10px;
+    background: #8c1932;
+    background: -webkit-linear-gradient(45deg,#8c1932,#ff6437 60%);
+    background: linear-gradient(45deg,#8c1932,#ff6437 60%);
+    height: 97vh;
+    text-align: center;
+    display: flex;
+}
+.noMatchImage{
+    height: 2rem;
+    align-items: flex-start;
+}
+.noMatchText
+{
+    color: #fff;
+    font-size: 1.5rem;
+    align-self: center;
+    top:50%;
+    font-weight: 500;
+    width: 80%;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Comfortaa:400,700,300);
+
+.loading {
+	 background: #e74c3c;
+	 text-align: center;
+	 font-family: 'Comfortaa', cursive;
+}
+.loading>svg {
+	 width: 100px;
+	 height: 100px;
+	 margin: 20px;
+	 display: inline-block;
+}
+ .made-with-love {
+	 margin-top: 20px;
+	 padding: 10px;
+	 font-size: 10px;
+	 font-family: arial;
+	 color: #fff;
+}
+ .made-with-love i {
+	 font-style: normal;
+	 color: #f50057;
+	 font-size: 14px;
+	 position: relative;
+	 top: 2px;
+}
+ .made-with-love a {
+	 color: #fff;
+	 text-decoration: none;
+}
+ .made-with-love a:hover {
+	 text-decoration: underline;
+}
+ 
+#html-spinner{
+    border:4px solid black;
+    border-top:4px solid white;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+  }
+  
+  #html-spinner{
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1.2s;
+    -webkit-animation-name: rotate;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    
+    -moz-transition-property: -moz-transform;
+    -moz-animation-name: rotate; 
+    -moz-animation-duration: 1.2s; 
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    
+    transition-property: transform;
+    animation-name: rotate; 
+    animation-duration: 1.2s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+  @-webkit-keyframes rotate {
+      from {-webkit-transform: rotate(0deg);}
+      to {-webkit-transform: rotate(360deg);}
+  }
+  
+  @-moz-keyframes rotate {
+      from {-moz-transform: rotate(0deg);}
+      to {-moz-transform: rotate(360deg);}
+  }
+  
+  @keyframes rotate {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+  }
+
+  /* spinner positioning */
+  
+  #html-spinner{
+    position:absolute;
+    top:200px;
+    margin-left:-24px;
+  }
+  
+  #html-spinner{
+    left:40%; 
+  }

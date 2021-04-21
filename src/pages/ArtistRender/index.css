@@ -1,0 +1,232 @@
+.playlistPage {
+    position: fixed;
+    top: 10%;
+    left: 220px;
+    width: 83%;
+    height: 80%;
+    box-sizing: border-box;
+    font-family: spotify-circular, spotify-circular-cyrillic, spotify-circular-arabic, spotify-circular-hebrew, Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
+    letter-spacing: normal;
+    text-transform: none;
+    overflow: auto;
+
+    color: white;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+    background-color: rgb(91, 87, 115);
+}
+.playListPage::-webkit-scrollbar {
+    width: 0px;
+}
+
+.body {
+    padding: 30px;
+    width: 100%;
+    height: 100vh;
+    overflow-y: overlay;
+    flex: 0.8;
+    color: white;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 1));
+    background-color: rgb(91, 87, 115);
+  }
+  
+  .body__info {
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+  }
+  
+  .body__shuffle {
+    font-size: 80px !important;
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .body__icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .body__icons > .MuiSvgIcon-root {
+    margin-right: 20px;
+  }
+  
+  .body__shuffle:hover {
+    transition: 100ms transform ease-in;
+    transform: scale(1.08);
+  }
+  
+  .body__background {
+    position: absolute;
+    top: 13vh;
+    right: 0;
+    opacity: 0.4;
+    height: 80%;
+    width: 80%;
+    background-color: black;
+  }
+  
+  .body__songs {
+    z-index: 1;
+    margin: 20px -30px;
+  }
+  
+  .body__info > img {
+    height: 20vw;
+    margin: 0 20px;
+    box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+  }
+  
+  .body__infoText {
+    flex: 1;
+  }
+  
+  .body__infoText > h2 {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+  
+  .body__infoText > p {
+    font-size: 14px;
+  }
+
+  .introdiv {
+    height: 50%;
+    display: flex;
+    padding: 0 32px 24px;
+    gap: 20px;
+    align-items: flex-end;
+    background-image: linear-gradient(rgba(18, 18, 18, 0), rgba(18, 18, 18, 0.7));
+}
+.introdiv img {
+    height: 20vw;
+    margin: 0 20px;
+    object-fit: fill;
+    box-shadow: 0px 4px 45px 0px rgba(0, 0, 0, 0.5);
+}
+.introdiv .name {
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+}
+.introdiv .extra {
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 400px;
+    color: rgba(255, 255, 255, .7);
+}
+.introdiv .boldextra {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 700px;
+    color: #fff;
+}
+.introdiv .dot {
+    margin: 0px 4px;
+}
+.buttonsdiv {
+    background-image: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 1));
+    padding: 24px 32px;
+    display: flex;
+}
+.buttonsdiv .play {
+    --size: 56px;
+    margin-right: 32px;
+    color: #fff;
+    background-color: #1db954;
+    border-radius: 50%;
+    border: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: var(--size);
+    width: var(--size);
+    min-width: var(--size);
+}
+.buttonsdiv .otherbtn {
+    margin-right: 24px;
+    background: transparent;
+    border: 0;
+    color: rgba(255, 255, 255, .7);
+    padding: 0;
+}
+.tableContainer {
+    padding: 10px 32px;
+    margin-bottom: 50px;
+}
+.tableContainer .table {
+    width: 100%;
+    counter-reset: serial;
+    text-align: left;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0px 0px;
+}
+.tableContainer .table th {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 10px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    position: sticky;
+    top: 0px;
+}
+.tableContainer .table .sticked th {
+    background-color: #181818;
+}
+.tableContainer .table a {
+    text-decoration: none;
+    color: inherit;
+}
+.tableContainer .table a:hover {
+    text-decoration: underline;
+}
+.tableContainer .table tbody > tr {
+    color: #b3b3b3;
+}
+.tableContainer .table tbody > tr:hover {
+    background-color: #282828;
+    color: #fff !important;
+}
+.tableContainer .table tr td:first-child:before {
+    counter-increment: serial;
+    content: counter(serial);
+}
+.tableContainer .table .titlediv img {
+    margin-right: 20px;
+}
+.tableContainer .table .titlediv div {
+    display: inline-block;
+    max-width: calc(100% - 60px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.tableContainer .table td {
+    box-sizing: border-box;
+    padding: 8px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+}
+.tableContainer .table td .highlighted {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #fff;
+}
+
+.tableContainer h2{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  font-size: 24px;
+  font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 28px;
+}

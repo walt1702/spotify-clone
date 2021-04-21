@@ -1,0 +1,99 @@
+.homePageSection {
+    padding: 10px 30px;
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    text-overflow: ellipsis;
+}
+.homePageSection .cardsContainer {
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 20px;
+    align-items: center;
+    overflow: hidden;
+}
+.homePageSection .coverFullSpace {
+    justify-content: space-between;
+}
+.homePageSection .introdiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top:5px;
+}
+.homePageSection .introdiv p {
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.homePageSection p {
+    color: #b3b3b3;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: normal;
+    margin: 5px 0px;
+}
+.homePageSection h2 {
+    text-transform: capitalize;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: -0.04em;
+    margin: 0px;
+}
+.homePageSection a {
+    text-decoration: none;
+    color: #fff;
+}
+.homePageSection a:hover {
+    text-decoration: underline;
+}
+.folderCard {
+    padding: 15px;
+    background: #181818;
+    border-radius: 4px;
+    max-width: 157px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.folderCard img {
+    height: 166px;
+    width: 166px;
+    object-fit: fill;
+}
+.folderCard .primary {
+    width: 100%;
+    max-height: 15%;
+}
+.folderCard .primary h3 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: normal;
+    margin: 12px 0px 8px;
+}
+.folderCard .secondary {
+    width: 100%;
+    max-height: 16%;
+}
+.folderCard .secondary p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.folderCard:hover {
+    background-color: #282828;
+}
+.folderCard p {
+    color: #b3b3b3;
+}
