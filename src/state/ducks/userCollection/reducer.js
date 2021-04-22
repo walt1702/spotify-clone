@@ -4,6 +4,7 @@ import {
 	SET_ARTIST_ALBUMS,
 	SET_ARTIST_DETAILS,
 	SET_ARTIST_TRACKS,
+	SET_FOLLOWED_ARTISTS,
 	SET_RELATED_ARTISTS,
 	SET_USER_BROWSE_CATEGORIES, 
 	SET_USER_BROWSE_FEATURED, 
@@ -80,6 +81,10 @@ const userCollectionReducer = (state = initialState,action) =>{
 	case SET_RELATED_ARTISTS:
 		oldState.artist = {...oldState.artist};
 		oldState.artist.relatedArtists = {...oldState.artist.relatedArtists,...action.payload.relatedArtists};
+		return oldState;
+	case SET_FOLLOWED_ARTISTS:
+		oldState.following = {...oldState.following};
+		oldState.following.artists = [...oldState.following.artists,...action.payload.artists];
 		return oldState;
 	default:
 		return oldState;

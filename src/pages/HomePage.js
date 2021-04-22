@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPlaylistData, fetchUserBrowseCategories, fetchUserBrowseFeatured, fetchUserBrowseLastPlayed, fetchUserBrowseReleases, fetchUserPlaylists} from "../state/ducks/userCollection/actions";
+import { fetchFollowedArtists, fetchPlaylistData, fetchUserBrowseCategories, fetchUserBrowseFeatured, fetchUserBrowseLastPlayed, fetchUserBrowseReleases, fetchUserPlaylists} from "../state/ducks/userCollection/actions";
 import HomePageRow from "./Components/HomePageRow";
 import Loading from "./Loading";
 import "./pages.css";
@@ -15,6 +15,7 @@ function HomePage()
 	const browse = useSelector(state=>state.userCollection.browse);
 	const lastPlayed = useSelector(state=>state.userCollection.browse.lastPlayed);
 	const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
+	const followedArtists = useSelector(state=>state.userCollection.following.artists);
     
 	useEffect(()=>{
 		dispatch(fetchUserPlaylists(token,playlists.length));   //Finding out Users playlist
@@ -22,11 +23,14 @@ function HomePage()
 			dispatch(fetchUserBrowseLastPlayed(token,"",5));
 		//else
 		// dispatch(fetchUserBrowseLastPlayed(token,lastPlayed[lastPlayed.length-1].id),5);
+		if(followedArtists.length<5)
+			dispatch(fetchFollowedArtists(token,20,""));
 	},[token]);
 
 	useEffect(()=>{
 		if(isUserLoggedIn)
 		{
+			dispatch(fetchFollowedArtists(token));
 			if(browse.releases.length<5)
 				dispatch(fetchUserBrowseReleases(token,"IN",browse.releases.length,5));
 			if(browse.categories.length<5)
@@ -48,7 +52,6 @@ function HomePage()
 
 	return (
 		<div className = "homePage">
-			{/* <h2 className = "greeting"> Good morning</h2> */}
 			{
 				browse === undefined
 					?<Loading/>

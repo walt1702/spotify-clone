@@ -5,6 +5,7 @@ import {
 	SET_ARTIST_ALBUMS,
 	SET_ARTIST_DETAILS,
 	SET_ARTIST_TRACKS,
+	SET_FOLLOWED_ARTISTS,
 	SET_RELATED_ARTISTS,
 	SET_USER_BROWSE_CATEGORIES, 
 	SET_USER_BROWSE_FEATURED, 
@@ -112,6 +113,15 @@ export const setRelatedArtists = relatedArtists =>{
 		}
 	};
 };
+
+export const setFollowedArtists = artists =>{
+	return {
+		type : SET_FOLLOWED_ARTISTS,
+		payload:{
+			artists
+		}
+	}
+}
 
 //Fetching stuff
 //---------------------------------------------------------------------------------------//
@@ -277,6 +287,27 @@ export const fetchRelatedArtists = (artistId,accessToken) =>{
 			} 
 		}).then(res=>{
 			dispatch(setRelatedArtists(res.data));
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
+};
+
+export const fetchFollowedArtists = (token,limit = 20,lastFetchedArtistId = '') =>{
+	if(lastFetchedArtistId !== "")
+		lastFetchedArtistId = `&after=${lastFetchedArtistId}`;
+	console.log("Artist ko laa rehe",token);
+	
+	return (dispatch)=>{
+		axios(`https://api.spotify.com/v1/me/following?type=artist&limit=${limit}${lastFetchedArtistId}` ,{
+			method:"GET",    
+			headers: { 
+				"Authorization": `Bearer ${token}`
+			} 
+		}).then (Response =>   {    
+			//console.log("User's Playlist Collection",Response)
+			if(Response.data.artists.items.length > 0) 
+				dispatch(setFollowedArtists(Response.data.artists.items));
 		}).catch(err=>{
 			console.log(err);
 		});

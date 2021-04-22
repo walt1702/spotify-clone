@@ -1,7 +1,8 @@
 export const authEndpoint = 
 "https://accounts.spotify.com/authorize";
 
-const redirectUrl = "https://spotify-clone-puce.vercel.app/";
+//const redirectUrl = "https://spotify-clone-puce.vercel.app/";
+const redirectUrl = "http://localhost:3000/";
 
 const clientId = "d9c8fd3abdc34f11aae981829eeeceb9";
 
@@ -11,6 +12,7 @@ const scopes = [
 	"user-read-playback-state",
 	"user-top-read",
 	"user-modify-playback-state",
+	"user-follow-read"
 ];
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=${scopes.join("%20")}

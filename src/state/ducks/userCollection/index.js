@@ -2,7 +2,7 @@
 import userCollectionReducer from "./reducer";
 
 //Actions
-import {fetchUserBrowseCategories,fetchUserBrowseFeatured,fetchUserBrowseReleases,fetchUserPlaylists} from "./actions";
+import {fetchUserBrowseCategories,fetchUserBrowseFeatured,fetchUserBrowseReleases,fetchUserPlaylists,fetchFollowedArtists} from "./actions";
 
 //Selectors
 
@@ -11,5 +11,6 @@ export {
 	fetchUserPlaylists,
 	fetchUserBrowseReleases,
 	fetchUserBrowseCategories,
-	fetchUserBrowseFeatured
+	fetchUserBrowseFeatured,
+	fetchFollowedArtists
 };
