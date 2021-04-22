@@ -5,6 +5,7 @@ import { fetchFollowedArtists, fetchPlaylistData, fetchUserBrowseCategories, fet
 import HomePageRow from "./Components/HomePageRow";
 import Loading from "./Loading";
 import "./pages.css";
+import Login from './Login'
 function HomePage()
 {
 	const [loading,setLoading] = useState(false);
@@ -30,7 +31,6 @@ function HomePage()
 	useEffect(()=>{
 		if(isUserLoggedIn)
 		{
-			dispatch(fetchFollowedArtists(token));
 			if(browse.releases.length<5)
 				dispatch(fetchUserBrowseReleases(token,"IN",browse.releases.length,5));
 			if(browse.categories.length<5)
@@ -51,17 +51,24 @@ function HomePage()
 	},[isUserLoggedIn,playlists]);
 
 	return (
-		<div className = "homePage">
+		<div>
 			{
-				browse === undefined
-					?<Loading/>
-					:
-					<>
-						<HomePageRow title = "recentlyPlayed" rowName = "Recently played" items = {browse.lastPlayed} isTitleLink = {false}/>
-						<HomePageRow title = "newReleases" rowName = "New releases" items = {browse.releases}/>
-						<HomePageRow title = "featuredPlaylists" rowName = "Featured playlists" items = {browse.featured}/>
-						<HomePageRow title = "categories" rowName = "Categories" items = {browse.categories}/>
-					</>
+				!isUserLoggedIn?
+				<Login/>
+				:
+				<div className = "homePage">
+				{
+					browse === undefined?
+					<Loading/>
+						:
+						<>
+							<HomePageRow title = "recentlyPlayed" rowName = "Recently played" items = {browse.lastPlayed} isTitleLink = {false}/>
+							<HomePageRow title = "newReleases" rowName = "New releases" items = {browse.releases}/>
+							<HomePageRow title = "featuredPlaylists" rowName = "Featured playlists" items = {browse.featured}/>
+							<HomePageRow title = "categories" rowName = "Categories" items = {browse.categories}/>
+						</>
+				}
+				</div>
 			}
 		</div>
 	);

@@ -296,7 +296,6 @@ export const fetchRelatedArtists = (artistId,accessToken) =>{
 export const fetchFollowedArtists = (token,limit = 20,lastFetchedArtistId = '') =>{
 	if(lastFetchedArtistId !== "")
 		lastFetchedArtistId = `&after=${lastFetchedArtistId}`;
-	console.log("Artist ko laa rehe",token);
 	
 	return (dispatch)=>{
 		axios(`https://api.spotify.com/v1/me/following?type=artist&limit=${limit}${lastFetchedArtistId}` ,{
