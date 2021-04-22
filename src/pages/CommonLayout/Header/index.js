@@ -63,8 +63,8 @@ function Header({layout}){
 
 			</div>
 			<div className = "header__right">
-				{/* {photo!==undefined?<Avatar src = {photo[0]["url"]} alt = "AP"/>:<Avatar alt = "AP"/>} */}
-				<Avatar alt = "AP"/>
+				 {photo!==undefined?<Avatar src = {photo[0]["url"]} alt = "AP"/>:<Avatar alt = "AP"/>} 
+				{/* <Avatar alt = "AP"/> */}
 				<h4>{userName}</h4>    
 			</div>
 		</div>
