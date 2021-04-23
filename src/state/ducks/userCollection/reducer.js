@@ -1,5 +1,6 @@
 import {
 	SAVE_DATA_ALBUMS,
+	SAVE_DATA_CATEGORIES,
 	SAVE_DATA_PLAYLISTS,
 	SET_ARTIST_ALBUMS,
 	SET_ARTIST_DETAILS,
@@ -61,6 +62,10 @@ const userCollectionReducer = (state = initialState,action) =>{
 	case SAVE_DATA_ALBUMS:
 		oldState.savedData = {...oldState.savedData};
 		oldState.savedData.albums = {...oldState.savedData.albums,...action.payload};
+		return oldState;
+	case SAVE_DATA_CATEGORIES:
+		oldState.savedData = {...oldState.savedData};
+		oldState.savedData.categories = {...oldState.savedData.categories,...action.payload};
 		return oldState;
 	case SET_USER_BROWSE_LAST_PLAYED:
 		oldState.browse = {...oldState.browse};

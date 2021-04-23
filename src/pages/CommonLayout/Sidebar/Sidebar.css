@@ -9,6 +9,7 @@
     top: 0px;
     height: 100%;
     width: 17%;
+    z-index: 5;
 }
 .sidebar__logo{
     margin-right: auto;
