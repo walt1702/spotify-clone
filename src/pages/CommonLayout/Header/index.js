@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { fetchSearchText, setSearchText } from "../../../state/ducks/metaData";
+import { userLogout } from "../../../state/ducks/authentication/actions";
 
 function Header({layout}){
 	const userName = useSelector(state=>state.authentication.userProfile.display_name);
@@ -13,11 +14,15 @@ function Header({layout}){
 	const photo = useSelector(state=>state.authentication.userProfile.images);
 	const history = useHistory();
 	const [text,setText] = useState("");
+	const [login,setLogin] = useState(true);
 	const handleChange = text => setText(text.target.value);
 	const dispatch = useDispatch();
 	useEffect(()=>{
 		dispatch(setSearchText(text));
 	},[text]);
+	// useEffect(()=>{
+	// 	dispatch(userLogout());
+	// },[login]);
 	return(
 		<div className = "header">
 			<div className = "header__left">

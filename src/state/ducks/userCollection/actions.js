@@ -1,10 +1,12 @@
 import axios from "axios";
 import { 
 	SAVE_DATA_ALBUMS,
+	SAVE_DATA_CATEGORIES,
 	SAVE_DATA_PLAYLISTS,
 	SET_ARTIST_ALBUMS,
 	SET_ARTIST_DETAILS,
 	SET_ARTIST_TRACKS,
+	SET_FOLLOWED_ARTISTS,
 	SET_RELATED_ARTISTS,
 	SET_USER_BROWSE_CATEGORIES, 
 	SET_USER_BROWSE_FEATURED, 
@@ -67,6 +69,14 @@ export const saveDataAlbums = (id,data) => {
 		}
 	};
 };
+export const saveDataCategories = (id,data) => {
+	return {
+		type:SAVE_DATA_CATEGORIES,
+		payload:{
+			[id]:data
+		}
+	};
+};
 
 export const  setUserBrowseLastPlayed = lastPlayed =>{
 	return {
@@ -112,6 +122,15 @@ export const setRelatedArtists = relatedArtists =>{
 		}
 	};
 };
+
+export const setFollowedArtists = artists =>{
+	return {
+		type : SET_FOLLOWED_ARTISTS,
+		payload:{
+			artists
+		}
+	}
+}
 
 //Fetching stuff
 //---------------------------------------------------------------------------------------//
@@ -205,6 +224,21 @@ export const fetchAlbumData = (albumId,accessToken) => {
 	};
 };
 
+export const fetchCategoryData = (categoryId,country,offset,limit,accessToken) => {
+	return (dispatch)=>{
+		axios.get(`https://api.spotify.com/v1/browse/categories/${categoryId}/playlists?country=${country}&offset=${offset}&limit=${limit}`,{
+			"headers": { 
+				"Authorization": `Bearer ${accessToken}`
+			} 
+		}).then(res=>{
+			dispatch(saveDataCategories(categoryId,res.data));
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
+};
+
+
 export const fetchUserBrowseLastPlayed = (token,lastFetchedTrackId = "",limit = 5) =>{
 	if(lastFetchedTrackId !== "")
 		lastFetchedTrackId = `&after=${lastFetchedTrackId}`;
@@ -277,6 +311,26 @@ export const fetchRelatedArtists = (artistId,accessToken) =>{
 			} 
 		}).then(res=>{
 			dispatch(setRelatedArtists(res.data));
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
+};
+
+export const fetchFollowedArtists = (token,limit = 20,lastFetchedArtistId = '') =>{
+	if(lastFetchedArtistId !== "")
+		lastFetchedArtistId = `&after=${lastFetchedArtistId}`;
+	
+	return (dispatch)=>{
+		axios(`https://api.spotify.com/v1/me/following?type=artist&limit=${limit}${lastFetchedArtistId}` ,{
+			method:"GET",    
+			headers: { 
+				"Authorization": `Bearer ${token}`
+			} 
+		}).then (Response =>   {    
+			//console.log("User's Playlist Collection",Response)
+			if(Response.data.artists.items.length > 0) 
+				dispatch(setFollowedArtists(Response.data.artists.items));
 		}).catch(err=>{
 			console.log(err);
 		});

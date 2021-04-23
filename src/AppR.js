@@ -12,8 +12,10 @@ import Search from "./pages/Search";
 import NoMatch from "./pages/NoMatch";
 import AlbumRender from "./pages/AlbumRender";
 import ArtistRender from "./pages/ArtistRender";
+import CategoryRender from "./pages/CategoryRender";
 function App () {
 	const playlists = useSelector( state=>state.userCollection.playlists );
+	const artists = useSelector(state=>state.userCollection.following.artists);
 	return (
 		<div>
 			<BrowserRouter>
@@ -44,8 +46,9 @@ function App () {
 						<AlbumRender/>
 					</Route>
 
-					<Route path = '/category/:categoryId'>
+					<Route path = '/categories/:categoryId'>
 						<CommonLayout/>
+						<CategoryRender/>
 					</Route>
 
 					<Route path = '/artist/:artistId'>
@@ -56,6 +59,12 @@ function App () {
 						<CommonLayout layout = "library"/>
 						<div className = "homePage">
 							<HomePageRow title = "playlists" items = {playlists} isTitleLink = {false}/>
+						</div>
+					</Route>
+					<Route path = '/collection/artists'>
+						<CommonLayout layout = "library"/>
+						<div className = "homePage">
+							<HomePageRow title = "artists" items = {artists} isTitleLink = {false}/>
 						</div>
 					</Route>
 					<Route path="*">

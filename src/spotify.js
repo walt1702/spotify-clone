@@ -11,6 +11,7 @@ const scopes = [
 	"user-read-playback-state",
 	"user-top-read",
 	"user-modify-playback-state",
+	"user-follow-read"
 ];
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=${scopes.join("%20")}
