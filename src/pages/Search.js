@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSearch } from '../state/ducks/metaData';
 import { fetchUserBrowseCategories } from '../state/ducks/userCollection/actions';
@@ -18,13 +18,12 @@ function Search()
     const searchItem = useSelector(state=>state.metaData.search);
 
     useEffect(()=>{
-        if(isUserLoggedIn){
-        dispatch(fetchSearch(token,searchText,"artist"));
-        dispatch(fetchSearch(token,searchText,"album"));
-        dispatch(fetchSearch(token,searchText,"playlist"));
-        dispatch(fetchSearch(token,searchText,"track"));
-        
-    }
+        if(isUserLoggedIn && searchText!==''){
+            dispatch(fetchSearch(token,searchText,"artist"));
+            dispatch(fetchSearch(token,searchText,"album"));
+            dispatch(fetchSearch(token,searchText,"playlist"));
+            dispatch(fetchSearch(token,searchText,"track"));         
+        }
     },[searchText,isUserLoggedIn,token])
 
 
@@ -48,7 +47,7 @@ function Search()
                 </div>
                 :
                 <div  className = "homePage">            
-                    <HomePageRow title = "categories" rowName = "Browse all" items = {browse.categories}/>
+                    <HomePageRow title = "categories" rowName = "Browse all" isTitleLink = {false} items = {browse.categories}/>
                 </div>
                 
             }  

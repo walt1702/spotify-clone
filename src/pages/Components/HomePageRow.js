@@ -35,7 +35,7 @@ function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
                 </div>
             </div>
 
-            <div className = {["cardsContainer",items?.length===5 && "coverFullSpace"].join(' ')}>
+            <div className = {["cardsContainer","coverFullSpace"].join(' ')}>
                 {
                     items?.map(item=>{
                         
@@ -64,7 +64,7 @@ function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
                             click = {item.type === 'track'?undefined:()=>{
                                 if(item.type)
                                 history.push(`/${item.type}/${item.id}`)
-                                else
+                                else if(title === 'categories')
                                 history.push(`/categories/${item.id}`)
                             }}
                         />

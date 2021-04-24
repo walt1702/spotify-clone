@@ -6,7 +6,7 @@
 }
 .homePageSection .cardsContainer {
     display: flex;
-    /* flex-wrap: wrap; */
+    flex-wrap: wrap;
     gap: 20px;
     align-items: center;
     overflow: hidden;
@@ -54,7 +54,7 @@
     text-decoration: underline;
 }
 .folderCard {
-    padding: 15px;
+    padding: 20px;
     background: #181818;
     border-radius: 4px;
     max-width: 157px;
