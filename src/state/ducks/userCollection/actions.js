@@ -7,6 +7,7 @@ import {
 	SET_ARTIST_DETAILS,
 	SET_ARTIST_TRACKS,
 	SET_FOLLOWED_ARTISTS,
+	SET_FOLLOWED_TRACKS,
 	SET_RELATED_ARTISTS,
 	SET_USER_BROWSE_CATEGORIES, 
 	SET_USER_BROWSE_FEATURED, 
@@ -131,6 +132,16 @@ export const setFollowedArtists = artists =>{
 		}
 	}
 }
+
+export const setFollowedTracks = tracks =>{
+	return {
+		type : SET_FOLLOWED_TRACKS,
+		payload:{
+			tracks
+		}
+	}
+}
+
 
 //Fetching stuff
 //---------------------------------------------------------------------------------------//
@@ -331,6 +342,23 @@ export const fetchFollowedArtists = (token,limit = 20,lastFetchedArtistId = '') 
 			//console.log("User's Playlist Collection",Response)
 			if(Response.data.artists.items.length > 0) 
 				dispatch(setFollowedArtists(Response.data.artists.items));
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
+};
+
+export const fetchFollowedTracks = (token,limit = 20,offset) =>{
+	return (dispatch)=>{
+		axios(`https://api.spotify.com/v1/me/tracks?market=IN&limit=${limit}&offset=${offset}` ,{
+			method:"GET",    
+			headers: { 
+				"Authorization": `Bearer ${token}`
+			} 
+		}).then (Response =>   {    
+			//console.log("User's Playlist Collection",Response)
+			if(Response.data.items.length > 0) 
+				dispatch(setFollowedTracks(Response.data.items));
 		}).catch(err=>{
 			console.log(err);
 		});

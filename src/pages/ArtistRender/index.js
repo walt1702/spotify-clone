@@ -27,7 +27,7 @@ function ArtistRender()
     return (
         <div className = "playlistPage">
             {
-                artist === undefined ? <Loading/> :
+                artist.albums.items === undefined ? <Loading/> :
                 <>
                     <div className = "introdiv">
                         <img src = {artist?.details?.images === undefined?'':artist?.details?.images[0]?.url} alt = ""/>
@@ -53,8 +53,8 @@ function ArtistRender()
                     </div>
 
                     {artist.topTracks.tracks && <Songs songs = {artist.topTracks.tracks.slice(0,5)} rowName = "Songs"/>}
-                    <HomePageRow title = "albums" rowName = "Discography" items = {artist?.albums?.items}/>
-                    <HomePageRow title = "artist" rowName = "Fans also like" items = {artist?.relatedArtists?.artists}/>
+                    <HomePageRow title = "albums" rowName = "Discography" items = {artist?.albums?.items?.slice(0,4)}/>
+                    <HomePageRow title = "artist" rowName = "Fans also like" items = {artist?.relatedArtists?.artists?.slice(0,4)}/>
                 </>
             }
         </div>

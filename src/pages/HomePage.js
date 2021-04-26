@@ -58,7 +58,7 @@ function HomePage()
 				:
 				<div className = "homePage">
 				{
-					browse === undefined?
+					browse.featured === undefined?
 					<Loading/>
 						:
 						<>

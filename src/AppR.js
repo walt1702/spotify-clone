@@ -68,6 +68,10 @@ function App () {
 							<HomePageRow title = "artists" items = {artists} isTitleLink = {false}/>
 						</div>
 					</Route>
+					<Route path = '/collection/tracks'>
+						<CommonLayout/>
+						<PlaylistRender/>
+					</Route>
 					<Route path = '/browse/:section'>
 						<CommonLayout/>
 						<BrowseSection/>

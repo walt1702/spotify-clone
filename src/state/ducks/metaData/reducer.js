@@ -3,7 +3,8 @@ import {
 	SET_SEARCH_TEXT,
 	SET_SEARCH_ALBUM,
 	SET_SEARCH_ARTIST,
-	SET_SEARCH_PLAYLIST
+	SET_SEARCH_PLAYLIST,
+	SET_PLAYING_TRACK
 }
 	from "./types";
 
@@ -14,7 +15,8 @@ const initialState = {
 		artists:{},
 		albums:{},
 		playlists:{}
-	}
+	},
+	playingTrack:{}
 };
 const metaDataReducer = (state=initialState,action) =>{
 	let oldState = {...state};
@@ -39,6 +41,9 @@ const metaDataReducer = (state=initialState,action) =>{
 	case SET_SEARCH_PLAYLIST:
 		oldState.search = {...oldState.search};
 		oldState.search.playlists = {...oldState.search.playlists,...action.payload.playlists};
+		return oldState;
+	case SET_PLAYING_TRACK:
+		oldState.playingTrack = {...oldState.playingTrack,...action.payload.playingTrack};
 		return oldState;
 	default:
 		return state;

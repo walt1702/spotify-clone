@@ -5,6 +5,7 @@ import { fetchSearch } from '../state/ducks/metaData';
 import { fetchUserBrowseCategories } from '../state/ducks/userCollection/actions';
 import Songs from './ArtistRender/Songs';
 import HomePageRow from './Components/HomePageRow';
+import Loading from './Loading';
 import './pages.css';
 function Search()
 {
@@ -48,10 +49,15 @@ function Search()
                 searchText
                 ?
                 <div className = "homePage">
-                    {searchItem?.tracks && <Songs songs = {searchItem?.tracks?.tracks?.items} rowName = "Popular"/>}
-                    {searchItem?.artists && <HomePageRow title = "artists" rowName = "Artists" items = {searchItem?.artists?.artists?.items}/>}
-                    {searchItem?.albums && <HomePageRow title = "albums" rowName = "Albums" items = {searchItem?.albums?.albums?.items}/>}
-                    {searchItem?.playlists && <HomePageRow title = "playlists" rowName = "Playlists" items = {searchItem?.playlists?.playlists?.items}/>}
+                    {
+                        searchItem.playlists.playlists=== undefined?<Loading/>:
+                        <div>
+                            {searchItem?.tracks && <Songs songs = {searchItem?.tracks?.tracks?.items} rowName = "Popular"/>}
+                            {searchItem?.artists && <HomePageRow title = "artists" rowName = "Artists" items = {searchItem?.artists?.artists?.items}/>}
+                            {searchItem?.albums && <HomePageRow title = "albums" rowName = "Albums" items = {searchItem?.albums?.albums?.items}/>}
+                            {searchItem?.playlists && <HomePageRow title = "playlists" rowName = "Playlists" items = {searchItem?.playlists?.playlists?.items}/>}
+                        </div>
+                    }
                 </div>
                 :
                 <div  className = "homePage" ref = {divref} onScroll = {handleScroll} onLoad = {handleScroll}>            
