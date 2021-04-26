@@ -18,7 +18,7 @@ function CategoryRender()
         //console.log("categoryID",categoryId,savedCategories[categoryId]);
     },[categoryId]);
     return (
-        <div className = "category__bg">
+        <div className = "homePage">
             {
             savedCategories[categoryId] === undefined
                 ?

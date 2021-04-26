@@ -34,7 +34,7 @@ function HomePage()
 			if(browse.releases.length<5)
 				dispatch(fetchUserBrowseReleases(token,"IN",browse.releases.length,5));
 			if(browse.categories.length<5)
-				dispatch(fetchUserBrowseCategories(token,"IN",browse.categories.length,20));
+				dispatch(fetchUserBrowseCategories(token,"IN",browse.categories.length,5));
 			if(browse.featured.length<5)
 				dispatch(fetchUserBrowseFeatured(token,"IN",browse.featured.length,5));    
 		}
