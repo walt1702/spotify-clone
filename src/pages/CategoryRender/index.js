@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { fetchCategoryData } from '../../state/ducks/userCollection';
+import HomePageRow from '../Components/HomePageRow';
+import Loading from '../Loading';
 
 
 function CategoryRender()
@@ -11,13 +13,21 @@ function CategoryRender()
     const savedCategories = useSelector(state=>state.userCollection.savedData.categories);
     const token = useSelector(state=>state.authentication.token.access_token);
     useEffect(()=>{
-        console.log("categoryID",categoryId);
-        if(!savedCategories[categoryId])
+        if(savedCategories[categoryId] === undefined)
             dispatch(fetchCategoryData(categoryId,'IN',0,20,token));
+        //console.log("categoryID",categoryId,savedCategories[categoryId]);
     },[categoryId]);
     return (
-        <div>
-
+        <div className = "category__bg">
+            {
+            savedCategories[categoryId] === undefined
+                ?
+            <Loading/>
+                :
+            <div  className = "homePage">            
+                <HomePageRow title = "playlists" rowName = "Browse all" isTitleLink = {false} items = {savedCategories[categoryId].playlists.items}/>
+            </div>
+            }
         </div>
     )
 }

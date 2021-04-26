@@ -97,3 +97,16 @@
 .folderCard p {
     color: #b3b3b3;
 }
+
+.show
+{
+    display: block;
+}
+.show svg
+{
+    fill :"#1db954";
+}
+.dont
+{
+    display: none;
+}
