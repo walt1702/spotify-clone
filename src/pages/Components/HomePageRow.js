@@ -1,10 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { setPlayingTrack } from '../../state/ducks/metaData/actions';
 import CardContainer from './CardContainer';
 import './component.css'
 function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
 {
     const history = useHistory();
+    const dispatch = useDispatch();
     return (
         <div className = "homePageSection">
             <div className = "introdiv">
@@ -35,7 +38,7 @@ function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
                 </div>
             </div>
 
-            <div className = {["cardsContainer",items?.length===5 && "coverFullSpace"].join(' ')}>
+            <div className = {["cardsContainer","coverFullSpace"].join(' ')}>
                 {
                     items?.map(item=>{
                         
@@ -61,10 +64,12 @@ function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
                             id = {item.id}
                             type = {item.type?item.type:title}
                             artists = {artists}
-                            click = {item.type === 'track'?undefined:()=>{
+                            click = {title === 'recentlyPlayed'?()=>{
+                                dispatch(setPlayingTrack(item.track));
+                            }:()=>{
                                 if(item.type)
                                 history.push(`/${item.type}/${item.id}`)
-                                else
+                                else if(title === 'categories')
                                 history.push(`/categories/${item.id}`)
                             }}
                         />

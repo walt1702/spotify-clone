@@ -7,7 +7,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { fetchSearchText, setSearchText } from "../../../state/ducks/metaData";
 import { userLogout } from "../../../state/ducks/authentication/actions";
-
+import lodash from 'lodash';
 function Header({layout}){
 	const userName = useSelector(state=>state.authentication.userProfile.display_name);
 	const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
@@ -67,10 +67,27 @@ function Header({layout}){
 				}
 
 			</div>
+			
 			<div className = "header__right">
 				{/* {photo!==undefined?<Avatar src = {photo[0]["url"]} alt = "AP"/>:<Avatar alt = "AP"/>} */}
 				<Avatar alt = "AP"/>
 				<h4>{userName}</h4>    
+				{/* <div class="dropdown">
+					<button class="dropbtn" onclick="myFunction()">Dropdown
+						<i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content" id="myDropdown">
+						<a href="#">Link 1</a>
+						<a href="#">Link 2</a>
+						<a href="#">Link 3</a>
+					</div>
+  				</div>  */}
+
+				{/* <div className = "userHolder" onClick = {()=>{setLogin(false);}}>
+					<Avatar alt = "AP"/>
+					<h4>{userName}</h4>    
+					<svg role="img" height="16" width="16" class="Svg-ulyrgf-0 dIsYZz f6406a56d35aea2a3598f6f270ef156c-scss" viewBox="0 0 16 16"><path d="M3 6l5 5.794L13 6z"></path></svg>
+				</div> */}
 			</div>
 		</div>
 	);

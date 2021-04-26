@@ -2,7 +2,7 @@ import React from "react";
 import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
@@ -41,6 +41,13 @@ function Sidebar(){
 				<div className = "sidebarOption">
 					<LibraryMusicIcon className = "sidebarOption__icon"/>
 					<h4>Your library</h4>
+				</div>
+			</Link>
+			<br/>
+			<Link to = '/collection/tracks'>
+				<div className = "sidebarOption">
+					<FavoriteIcon className = "sidebarOption__icon"/>
+					<h4>Liked Songs</h4>
 				</div>
 			</Link>
 

@@ -1,4 +1,4 @@
-import { SET_SEARCH_ALBUM, 
+import { SET_PLAYING_TRACK, SET_SEARCH_ALBUM, 
 	SET_SEARCH_ARTIST, 
 	SET_SEARCH_PLAYLIST, 
 	SET_SEARCH_TEXT, 
@@ -6,6 +6,15 @@ import { SET_SEARCH_ALBUM,
 import axios from "axios";
 
 //Action Creators
+export const setPlayingTrack = playingTrack =>{
+	return {
+		type:SET_PLAYING_TRACK,
+		payload:{
+			playingTrack
+		}
+	}
+}
+
 export const setSearchText = searchText =>{
 	return {
 		type: SET_SEARCH_TEXT,

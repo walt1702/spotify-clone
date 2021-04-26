@@ -6,6 +6,7 @@ import {
 	SET_ARTIST_DETAILS,
 	SET_ARTIST_TRACKS,
 	SET_FOLLOWED_ARTISTS,
+	SET_FOLLOWED_TRACKS,
 	SET_RELATED_ARTISTS,
 	SET_USER_BROWSE_CATEGORIES, 
 	SET_USER_BROWSE_FEATURED, 
@@ -18,6 +19,7 @@ const initialState = {
 	playlists:[],
 	following:{
 		artists:[],
+		tracks:[]
 	},
 	browse:{
 		releases:[],
@@ -90,6 +92,10 @@ const userCollectionReducer = (state = initialState,action) =>{
 	case SET_FOLLOWED_ARTISTS:
 		oldState.following = {...oldState.following};
 		oldState.following.artists = [...oldState.following.artists,...action.payload.artists];
+		return oldState;
+	case SET_FOLLOWED_TRACKS:
+		oldState.following = {...oldState.following};
+		oldState.following.tracks = [...oldState.following.tracks,...action.payload.tracks];
 		return oldState;
 	default:
 		return oldState;

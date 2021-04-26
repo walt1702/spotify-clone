@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from 'react'
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setPlayingTrack } from '../../state/ducks/metaData/actions';
 import './index.css'
 function Songs({songs,rowName})
 {
     const headerRef = useRef(null);
     const containerRef = useRef(null);
-
+    const dispatch = useDispatch();
     const checkHeaderSticky = () =>{
         let limit = (window.screen.height/10)+1;
         headerRef.current.parentElement.classList.toggle("sticked",headerRef.current.getBoundingClientRect().y <= limit);
@@ -52,7 +54,12 @@ function Songs({songs,rowName})
 
                 <tbody>
                     {
-                        songs?.map(song=><tr>
+                        songs?.map(song=><tr onClick = {()=>
+                            {
+                                //console.log("playing track",song);
+                                dispatch(setPlayingTrack(song));
+                            }
+                        }>
                             <td></td>
                             <td>
                                 <div className="titlediv">
