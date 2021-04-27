@@ -12,7 +12,9 @@ import {
 	SET_USER_BROWSE_FEATURED, 
 	SET_USER_BROWSE_LAST_PLAYED, 
 	SET_USER_BROWSE_RELEASES,
-	SET_USER_PLAYLISTS } 
+	SET_USER_PLAYLISTS, 
+	UNFOLLOW_ARTIST,
+	UNFOLLOW_PLAYLIST} 
 	from "./types";
 
 const initialState = {
@@ -96,6 +98,13 @@ const userCollectionReducer = (state = initialState,action) =>{
 	case SET_FOLLOWED_TRACKS:
 		oldState.following = {...oldState.following};
 		oldState.following.tracks = [...oldState.following.tracks,...action.payload.tracks];
+		return oldState;
+	case UNFOLLOW_ARTIST:
+		oldState.following = {...oldState.following};
+		oldState.following.artists = oldState.following.artists.filter(artist=>artist.id!==action.payload.id);
+		return oldState;
+	case UNFOLLOW_PLAYLIST:
+		oldState.playlists = oldState.playlists.filter(playlist=>playlist.id!==action.payload.id);
 		return oldState;
 	default:
 		return oldState;

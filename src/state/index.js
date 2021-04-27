@@ -8,8 +8,8 @@ import { metaDataReducer } from "./ducks/metaData";
 
 
 const middlewares=[
-	logger,
 	thunk,
+	logger
 ];
 const store = createStore(combineReducers({
 	authentication:authenticationReducer,

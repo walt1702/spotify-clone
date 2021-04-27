@@ -24,12 +24,20 @@
 {
     display: flex;
     justify-content: space-between;
+    margin-left: 37px;
 }
-
+.btn__extra>a
+{
+    text-decoration: none;
+}
 .btn{
     padding: 10px;
-    text-decoration: none;
     color: white;
+    margin: 0 20px 0 0;
+    font-size:15px;
+    background-color: #333;
+    border-radius: 4px;
+    padding: 8px 16px;
     text-decoration: none;
 }
 

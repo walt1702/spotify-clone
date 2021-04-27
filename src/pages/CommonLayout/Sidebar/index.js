@@ -54,17 +54,17 @@ function Sidebar(){
 			<br/>
 			<strong className = "sidebar__title">PLAYLISTS</strong>
 			<hr/>
-
-			{
-				playlists.map(item=>
-					<Link to = {`/playlist/${item.id}`}>
-						<div className = "sidebarOption">
-							<p>{item.name}</p>
-						</div>
-					</Link>
-				)
-			}
-
+			<div className = "sidebarPlaylists">
+				{
+					playlists.map(item=>
+						<Link to = {`/playlist/${item.id}`}>
+							<div className = "sidebarOption">
+								<p>{item.name}</p>
+							</div>
+						</Link>
+					)
+				}
+			</div>
 		</div>
 	);
 }

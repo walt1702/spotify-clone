@@ -17,6 +17,7 @@ import BrowseSection from "./pages/BrowseSection";
 function App () {
 	const playlists = useSelector( state=>state.userCollection.playlists );
 	const artists = useSelector(state=>state.userCollection.following.artists);
+	const albums = useSelector(state=>state.userCollection.following.albums);
 	return (
 		<div>
 			<BrowserRouter>
@@ -66,6 +67,12 @@ function App () {
 						<CommonLayout layout = "library"/>
 						<div className = "homePage">
 							<HomePageRow title = "artists" items = {artists} isTitleLink = {false}/>
+						</div>
+					</Route>
+					<Route path = '/collection/albums'>
+						<CommonLayout layout = "library"/>
+						<div className = "homePage">
+							<HomePageRow title = "albums" items = {albums} isTitleLink = {false}/>
 						</div>
 					</Route>
 					<Route path = '/collection/tracks'>
