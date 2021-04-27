@@ -53,9 +53,12 @@ function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
                         imageUrl = item.track.album.images[0]['url'];
                         
                         let artists = item.artists?item.artists[0].name:undefined;
-
+                        let artistId = item.artists?item.artists[0].id:undefined;
                         if(title === 'recentlyPlayed')
-                        artists = item?.track?.artists[0].name;
+                        {
+                            artists = item?.track?.artists[0].name;
+                            artistId = item?.track?.artists[0].id;
+                        }
                         //Return is important otherwise it won't render
                         
                         return <CardContainer 
@@ -64,6 +67,7 @@ function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
                             id = {item.id}
                             type = {item.type?item.type:title}
                             artists = {artists}
+                            artistId = {artistId}
                             click = {title === 'recentlyPlayed'?()=>{
                                 dispatch(setPlayingTrack(item.track));
                             }:()=>{

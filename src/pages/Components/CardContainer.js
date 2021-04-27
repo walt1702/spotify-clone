@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./component.css";
 
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-function CardContainer({image,nameItem,id,type,artists,click})
+import { Link } from "react-router-dom";
+function CardContainer({image,nameItem,id,type,artists,click,artistId})
 {
 	//const [show,setShow] = useState(false); onMouseOver = {()=>{setShow(true)}} onMouseOut = {()=>{setShow(false)}}
 	return (
@@ -14,7 +15,7 @@ function CardContainer({image,nameItem,id,type,artists,click})
 			<div className = "primary"> 
 				<h3>{nameItem}</h3>
 			</div>
-			{artists&&<div className = "secondary"><p>{artists}</p></div>}
+			{artists&&<div className = "secondary"><Link to={`/artist/${artistId}`}><p>{artists}</p></Link></div>}
 		</div>
 	);
 }

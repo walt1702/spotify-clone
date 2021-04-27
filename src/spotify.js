@@ -13,7 +13,12 @@ const scopes = [
 	"user-top-read",
 	"user-modify-playback-state",
 	"user-follow-read",
-	"user-library-read"
+	"user-library-read",
+	"user-follow-modify",
+	"playlist-read-private",
+	"playlist-read-collaborative",
+	"playlist-modify-public",
+	"playlist-modify-private"
 ];
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=${scopes.join("%20")}

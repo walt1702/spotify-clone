@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import { 
 	SAVE_DATA_ALBUMS,
 	SAVE_DATA_CATEGORIES,
@@ -13,11 +14,31 @@ import {
 	SET_USER_BROWSE_FEATURED, 
 	SET_USER_BROWSE_LAST_PLAYED, 
 	SET_USER_BROWSE_RELEASES, 
-	SET_USER_PLAYLISTS } 
+	SET_USER_PLAYLISTS, 
+	UNFOLLOW_ARTIST,
+	UNFOLLOW_PLAYLIST} 
 	from "./types";
 
 
 //Action Creators
+export const initUnfollowArtist = id =>{
+	return{
+		type: UNFOLLOW_ARTIST,
+		payload:{
+			id
+		}
+	}
+}
+
+export const initUnfollowPlaylist = id =>{
+	return{
+		type: UNFOLLOW_PLAYLIST,
+		payload:{
+			id
+		}
+	}
+}
+
 export const setUserPlaylists = playlists =>{
 	return {
 		type: SET_USER_PLAYLISTS,
@@ -364,3 +385,64 @@ export const fetchFollowedTracks = (token,limit = 20,offset) =>{
 		});
 	};
 };
+
+export const followArtist = (token,artistId) =>{
+	return () =>{
+		axios(`https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}` ,{
+			method:"PUT",    
+			headers: { 
+				"Authorization": `Bearer ${token}`
+			} 
+		}).then (Response =>   {    
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
+}
+
+
+export const unfollowArtist = (token,artistId) =>{
+	return () =>{
+		axios(`https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}` ,{
+			method:"DELETE",    
+			headers: { 
+				"Authorization": `Bearer ${token}`
+			} 
+		}).then (Response =>   {    
+			
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
+}
+
+export const followPlaylist = (token,playlistId) =>{
+	return () =>{
+		axios(`https://api.spotify.com/v1/playlists/${playlistId}/followers` ,{
+			method:"PUT",    
+			"public": false,
+			headers: { 
+				"Authorization": `Bearer ${token}`
+			} 
+		}).then (Response =>   {    
+			
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
+}
+export const unfollowPlaylist = (token,playlistId) =>{
+	console.log("UnFollwing a playlist");
+	return () =>{
+		axios(`https://api.spotify.com/v1/playlists/${playlistId}/followers` ,{
+			method:"DELETE",   
+			headers: { 
+				"Authorization": `Bearer ${token}`
+			} 
+		}).then (Response =>   {    
+			
+		}).catch(err=>{
+			console.log(err);
+		});
+	};
+}

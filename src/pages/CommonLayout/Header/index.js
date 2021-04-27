@@ -3,7 +3,7 @@ import "./header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { Avatar } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { fetchSearchText, setSearchText } from "../../../state/ducks/metaData";
 import { userLogout } from "../../../state/ducks/authentication/actions";
@@ -17,6 +17,8 @@ function Header({layout}){
 	const [login,setLogin] = useState(true);
 	const handleChange = text => setText(text.target.value);
 	const dispatch = useDispatch();
+	const {pageName} = useParams();
+	console.log(pageName);
 	useEffect(()=>{
 		dispatch(setSearchText(text));
 	},[text]);
@@ -38,16 +40,13 @@ function Header({layout}){
 					layout === "library"&&
                     <div className = "btn__extra">
                     	<Link to = '/collection/playlists'>
-                    		<span className = "btn">Playlists</span>
-                    	</Link>
-                    	<Link to = '/collection/podcasts'>
-                    		<span className = "btn">Podcasts</span>
+                    		<span className = {["btn","bg_btn" && pageName === 'playlists'].join(' ')}>Playlists</span>
                     	</Link>
                     	<Link to = '/collection/artists'>
-                    		<span className = "btn">Artists</span>
+                    		<span className = {["btn","bg_btn" && pageName === 'artists'].join(' ')}>Artists</span>
                     	</Link>
                     	<Link to = '/collection/albums'>
-                    		<span className = "btn">Albums</span>
+                    		<span className = {["btn","bg_btn" && pageName === 'albums'].join(' ')}>Albums</span>
                     	</Link>
     
                     </div> 
