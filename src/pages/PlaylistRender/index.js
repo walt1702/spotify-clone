@@ -9,6 +9,7 @@ import likedTracks from '../../assets/likedTracks.png';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import axios from 'axios';
+import Login from '../Login';
 function PlaylistRender()
 {
     const {playlistId} = useParams();
@@ -16,6 +17,7 @@ function PlaylistRender()
     const savedPlaylists = useSelector(state=>state.userCollection.savedData.playlists);
     const followedTracks = useSelector(state=>state.userCollection.following.tracks);
     const token = useSelector(state=>state.authentication.token.access_token);
+    const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
     let playlistDetails = savedPlaylists[playlistId];
     const user = useSelector(state=>state.authentication.userProfile);
     const [follow,setFollow] = useState(false);
@@ -55,7 +57,12 @@ function PlaylistRender()
     if(playlistId === undefined)
     playlistDetails = followedTracks;
     return(
-        <div className = "playlistPage">
+    <div>
+        {
+            !isUserLoggedIn?
+            <Login/>
+            :
+            <div className = "playlistPage">
             {playlistDetails === undefined?<Loading/>:<>
             <div className = "introdiv">
                 <img src = {playlistId!==undefined ? playlistDetails?.images[0]?.url : likedTracks} alt = ""/>
@@ -98,6 +105,8 @@ function PlaylistRender()
                 </>
                 }
         </div>
+        }
+    </div>
     )
 }
 

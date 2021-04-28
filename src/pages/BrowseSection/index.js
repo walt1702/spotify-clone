@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import { fetchUserBrowseCategories, fetchUserBrowseFeatured, fetchUserBrowseReleases } from '../../state/ducks/userCollection';
 import HomePageRow from '../Components/HomePageRow';
 import Loading from '../Loading';
+import Login from '../Login';
 
 function BrowseSection()
 {
@@ -11,6 +12,7 @@ function BrowseSection()
     const browse = useSelector(state=>state.userCollection.browse);
     const token = useSelector(state=>state.authentication.token.access_token);
     const dispatch = useDispatch();
+    const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
     console.log(section);
     let items = []; let load = undefined;
     const loadMoreReleases = () =>{
@@ -51,9 +53,13 @@ function BrowseSection()
         setIsFetching(true);}
     }
     return (
-        <div className = "homePage" ref = {divref} onScroll = {handleScoll} onLoad = {handleScoll}>
-                {/* {isFetching && <div>Loading...</div>} */}
-                <HomePageRow title = {section} isTitleLink = {false} items = {items}/>
+        <div>
+            {
+                !isUserLoggedIn?<Login/>:
+                <div className = "homePage" ref = {divref} onScroll = {handleScoll} onLoad = {handleScoll}>
+                    {/* {isFetching && <div>Loading...</div>} */}
+                    <HomePageRow title = {section} isTitleLink = {false} items = {items}/>
+            </div>}
         </div>
     )
 }

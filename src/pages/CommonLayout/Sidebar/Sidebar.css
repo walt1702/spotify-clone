@@ -64,6 +64,8 @@
 .sidebarPlaylists
 {
     display: flex;
+    height: 40%;
+    overflow-y: auto;
     flex-direction: column;
 }
 .sidebarPlaylists>a
