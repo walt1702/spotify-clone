@@ -18,6 +18,7 @@ function App () {
 	const playlists = useSelector( state=>state.userCollection.playlists );
 	const artists = useSelector(state=>state.userCollection.following.artists);
 	const albums = useSelector(state=>state.userCollection.following.albums);
+    const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
 	return (
 		<div>
 			<BrowserRouter>
@@ -59,20 +60,35 @@ function App () {
 					</Route>
 					<Route path = '/collection/playlists'>
 						<CommonLayout layout = "library"/>
-						<div className = "homePage">
-							<HomePageRow title = "playlists" items = {playlists} isTitleLink = {false}/>
+						<div>
+							{
+								!isUserLoggedIn?<Login/>:
+								<div className = "homePage">
+									<HomePageRow title = "playlists" items = {playlists} isTitleLink = {false}/>
+								</div>
+							}
 						</div>
 					</Route>
 					<Route path = '/collection/artists'>
 						<CommonLayout layout = "library"/>
-						<div className = "homePage">
-							<HomePageRow title = "artists" items = {artists} isTitleLink = {false}/>
+						<div>
+							{
+								!isUserLoggedIn?<Login/>:
+								<div className = "homePage">
+									<HomePageRow title = "artists" items = {artists} isTitleLink = {false}/>
+								</div>
+							}
 						</div>
 					</Route>
 					<Route path = '/collection/albums'>
 						<CommonLayout layout = "library"/>
-						<div className = "homePage">
-							<HomePageRow title = "albums" items = {albums} isTitleLink = {false}/>
+						<div>
+							{
+								!isUserLoggedIn?<Login/>:
+								<div className = "homePage">
+									<HomePageRow title = "albums" items = {albums} isTitleLink = {false}/>
+								</div>
+							}
 						</div>
 					</Route>
 					<Route path = '/collection/tracks'>

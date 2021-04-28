@@ -16,6 +16,7 @@ export const setPlayingTrack = playingTrack =>{
 }
 
 export const setSearchText = searchText =>{
+	//console.log(searchText,"seach");
 	return {
 		type: SET_SEARCH_TEXT,
 		payload:{
@@ -59,7 +60,7 @@ export const setSearchArtists = artists =>{
 
 export const setSearchItem = (data,typeItem) =>{
 	const item = `SET_SEARCH_${typeItem}`;
-	console.log(item);
+	//console.log(item);
 	return{
 		type:item,
 		payload:{
@@ -72,7 +73,7 @@ export const setSearchItem = (data,typeItem) =>{
 //https://api.spotify.com/v1/search?q=an&type=track&market=IN&limit=5&offset=0
 export const fetchSearch = (accessToken,query,type,offset = 0,limit = 5) =>{
 	let tsx = type.toUpperCase();
-	console.log(tsx);
+//	console.log(tsx);
 	return (dispatch)=>{
 		//https://api.spotify.com/v1/search?q=bob%20year:2014&type=album
 		axios(`https://api.spotify.com/v1/search?q=${query}&type=${type}&market=IN&limit=${limit}&offset=${offset}`,{

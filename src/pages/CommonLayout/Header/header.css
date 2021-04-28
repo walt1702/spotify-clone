@@ -91,7 +91,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(0,0,0,.7);
     border: 0;
     border-radius: 23px;
     color: #fff;
@@ -100,4 +99,56 @@
     margin-inline-start: 16px;
     padding: 2px;
     position: relative;
+}
+
+.userHolder>h4
+{
+    margin-left: 10px;
+    margin-right: 7px;
+}
+.navigation {
+    width: 100%;
+    background-color: black;
+  }
+  
+  .navigation > img {
+    width: 25px;
+    border-radius: 50px;
+    float: left;
+  }
+  
+  .logout {
+    font-size: .8em;
+    font-family: 'Oswald', sans-serif;
+      position: relative;
+    right: -18px;
+    bottom: -4px;
+    overflow: hidden;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity .45s;
+    -webkit-transition: opacity .35s;
+    
+  }
+.drag
+{
+    background-color: #282828;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+    box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+    height: 25px;
+    text-align: center;
+    justify-content: center;
+    max-width: 350px;
+    min-width: 160px;
+    overflow-y: auto;
+    padding: 4px;
+    position: relative;
+    margin-top: 100px;
+    margin-left: -160px;
+    z-index: 100;
+}
+  
+.userHold{
+    display: flex;
 }

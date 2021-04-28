@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import { fetchCategoryData } from '../../state/ducks/userCollection';
 import HomePageRow from '../Components/HomePageRow';
 import Loading from '../Loading';
+import Login from '../Login';
 
 
 function CategoryRender()
@@ -11,6 +12,7 @@ function CategoryRender()
     const {categoryId} = useParams();
     const dispatch = useDispatch();
     const savedCategories = useSelector(state=>state.userCollection.savedData.categories);
+    const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
     const token = useSelector(state=>state.authentication.token.access_token);
     useEffect(()=>{
         if(savedCategories[categoryId] === undefined)
@@ -18,16 +20,22 @@ function CategoryRender()
         //console.log("categoryID",categoryId,savedCategories[categoryId]);
     },[categoryId]);
     return (
-        <div className = "homePage">
-            {
-            savedCategories[categoryId] === undefined
-                ?
-            <Loading/>
-                :
-            <div  className = "homePage">            
-                <HomePageRow title = "playlists" rowName = "Browse all" isTitleLink = {false} items = {savedCategories[categoryId].playlists.items}/>
+        <div>
+        {
+            !isUserLoggedIn?<Login/>
+            :
+            <div className = "homePage">
+                {
+                savedCategories[categoryId] === undefined
+                    ?
+                <Loading/>
+                    :
+                <div  className = "homePage">            
+                    <HomePageRow title = "playlists" rowName = "Browse all" isTitleLink = {false} items = {savedCategories[categoryId].playlists.items}/>
+                </div>
+                }
             </div>
-            }
+        }
         </div>
     )
 }

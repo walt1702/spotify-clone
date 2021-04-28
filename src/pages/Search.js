@@ -6,6 +6,7 @@ import { fetchUserBrowseCategories } from '../state/ducks/userCollection/actions
 import Songs from './ArtistRender/Songs';
 import HomePageRow from './Components/HomePageRow';
 import Loading from './Loading';
+import Login from './Login';
 import './pages.css';
 function Search()
 {
@@ -44,27 +45,31 @@ function Search()
         }
     }
     return (
-        <div className = "search">
-              {
-                searchText
-                ?
-                <div className = "homePage">
-                    {
-                        searchItem.playlists.playlists=== undefined?<Loading/>:
-                        <div>
-                            {searchItem?.tracks && <Songs songs = {searchItem?.tracks?.tracks?.items} rowName = "Popular"/>}
-                            {searchItem?.artists && <HomePageRow title = "artists" rowName = "Artists" items = {searchItem?.artists?.artists?.items}/>}
-                            {searchItem?.albums && <HomePageRow title = "albums" rowName = "Albums" items = {searchItem?.albums?.albums?.items}/>}
-                            {searchItem?.playlists && <HomePageRow title = "playlists" rowName = "Playlists" items = {searchItem?.playlists?.playlists?.items}/>}
-                        </div>
-                    }
-                </div>
-                :
-                <div  className = "homePage" ref = {divref} onScroll = {handleScroll} onLoad = {handleScroll}>            
-                    <HomePageRow title = "categories" rowName = "Browse all" isTitleLink = {false} items = {items}/>
-                </div>
-                
-            }  
+        <div>
+        {
+            !isUserLoggedIn?<Login/>:
+            <div className = "search">
+                {
+                    searchText
+                    ?
+                    <div className = "homePage">
+                        {
+                            searchItem.playlists.playlists=== undefined?<Loading/>:
+                            <div>
+                                {searchItem?.tracks && <Songs songs = {searchItem?.tracks?.tracks?.items} rowName = "Popular"/>}
+                                {searchItem?.artists && <HomePageRow title = "artists" rowName = "Artists" items = {searchItem?.artists?.artists?.items}/>}
+                                {searchItem?.albums && <HomePageRow title = "albums" rowName = "Albums" items = {searchItem?.albums?.albums?.items}/>}
+                                {searchItem?.playlists && <HomePageRow title = "playlists" rowName = "Playlists" items = {searchItem?.playlists?.playlists?.items}/>}
+                            </div>
+                        }
+                    </div>
+                    :
+                    <div  className = "homePage" ref = {divref} onScroll = {handleScroll} onLoad = {handleScroll}>            
+                        <HomePageRow title = "categories" rowName = "Browse all" isTitleLink = {false} items = {items}/>
+                    </div>
+                    
+                }  
+            </div>}
         </div>
     )
 }

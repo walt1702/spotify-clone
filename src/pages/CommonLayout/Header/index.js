@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect,useState } from "react";
 import "./header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { Avatar } from "@material-ui/core";
@@ -7,24 +7,47 @@ import { useHistory, useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { fetchSearchText, setSearchText } from "../../../state/ducks/metaData";
 import { userLogout } from "../../../state/ducks/authentication/actions";
-import lodash from 'lodash';
+import debounce from "lodash.debounce";
+const _ = require("lodash");
+function useDebounce(callback, delay) {
+	const debouncedFn = useCallback(
+	  debounce((...args) => callback(...args), delay),
+	  [delay] // will recreate if delay changes
+	);
+	return debouncedFn;
+  }
+
+function useDebounceAlt(callback, delay) {
+	const memoizedCallback = useCallback(callback, []);
+	const debouncedFn = useRef(debounce(memoizedCallback, delay));
+  
+	useEffect(() => {
+	  debouncedFn.current = debounce(memoizedCallback, delay);
+	}, [memoizedCallback, debouncedFn, delay]);
+  
+	return debouncedFn.current;
+}
 function Header({layout}){
 	const userName = useSelector(state=>state.authentication.userProfile.display_name);
 	const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
 	const photo = useSelector(state=>state.authentication.userProfile.images);
 	const history = useHistory();
 	const [text,setText] = useState("");
-	const [login,setLogin] = useState(true);
-	const handleChange = text => setText(text.target.value);
+	const [low,setLow] = useState(true);
+	const [dbValue, saveToDb] = useState(""); 
+	const debouncedSave = useDebounce((nextValue) => saveToDb(nextValue), 300);  
+	const handleChange = (event) => {
+		const { value: nextValue } = event.target;
+		setText(nextValue);
+		debouncedSave(nextValue);
+	  };
+	//	const handleChange = text => setText(text.target.value);
 	const dispatch = useDispatch();
 	const {pageName} = useParams();
-	console.log(pageName);
+//	console.log(pageName);
 	useEffect(()=>{
-		dispatch(setSearchText(text));
-	},[text]);
-	// useEffect(()=>{
-	// 	dispatch(userLogout());
-	// },[login]);
+		dispatch(setSearchText(dbValue));
+	},[dbValue]);
 	return(
 		<div className = "header">
 			<div className = "header__left">
@@ -68,25 +91,24 @@ function Header({layout}){
 			</div>
 			
 			<div className = "header__right">
-				{/* {photo!==undefined?<Avatar src = {photo[0]["url"]} alt = "AP"/>:<Avatar alt = "AP"/>} */}
-				<Avatar alt = "AP"/>
-				<h4>{userName}</h4>    
-				{/* <div class="dropdown">
-					<button class="dropbtn" onclick="myFunction()">Dropdown
-						<i class="fa fa-caret-down"></i>
-					</button>
-					<div class="dropdown-content" id="myDropdown">
-						<a href="#">Link 1</a>
-						<a href="#">Link 2</a>
-						<a href="#">Link 3</a>
-					</div>
-  				</div>  */}
+				{/* <div class="navigation">
+				
+					<a class="button" href="">
+						<div className = "userHold">
+							<Avatar alt = "AP" src = {_.get(photo,'[0].url',undefined)}/>
+							<h4>{userName}</h4>
+						</div>
+						<div class="logout" onClick = {()=>dispatch(userLogout())}>Logout</div>
 
-				{/* <div className = "userHolder" onClick = {()=>{setLogin(false);}}>
-					<Avatar alt = "AP"/>
-					<h4>{userName}</h4>    
-					<svg role="img" height="16" width="16" class="Svg-ulyrgf-0 dIsYZz f6406a56d35aea2a3598f6f270ef156c-scss" viewBox="0 0 16 16"><path d="M3 6l5 5.794L13 6z"></path></svg>
+					</a>
+
 				</div> */}
+				<div className = "userHolder" onClick = {()=>{setLow(!low)}}>
+					<Avatar alt = "AP" src = {_.get(photo,'[0].url',undefined)}/>
+					<h4>{userName}</h4>    
+					{	low?<span>▾</span>:<span>▴</span>	}
+					{	!low && <div className = "drag" onClick = {()=>dispatch(userLogout())}>Logout</div> }
+				</div>
 			</div>
 		</div>
 	);
