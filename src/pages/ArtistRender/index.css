@@ -1,7 +1,7 @@
 .playlistPage {
     position: fixed;
     top: 10%;
-    left: 220px;
+    left: 17%;
     width: 83%;
     height: 80%;
     box-sizing: border-box;
@@ -14,8 +14,8 @@
     background: linear-gradient(transparent, rgba(0, 0, 0, 1));
     background-color: rgb(91, 87, 115);
 }
-.playListPage::-webkit-scrollbar {
-    width: 0px;
+.playlistPage::-webkit-scrollbar{
+  width:0px;
 }
 
 .body {
@@ -129,6 +129,10 @@
     background-image: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 1));
     padding: 24px 32px;
     display: flex;
+}
+.buttonsdiv .colored
+{
+  fill: rgb(29, 185, 84);
 }
 .buttonsdiv .play {
     --size: 56px;
