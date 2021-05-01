@@ -14,23 +14,6 @@
     color: #fff;
     overflow: auto;
 }
-.homePage .greeting
-{
-    color: #fff;
-    display: inline-block;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding-left: 60px;
-    padding-top: 5px;
-    padding-bottom: 10px;
-    font-size: 29px;
-    font-weight: 700;
-    letter-spacing: -.04em;
-    line-height: 36px;
-    text-transform: none;
-}
 .homePage::-webkit-scrollbar{
     width:0px
 }

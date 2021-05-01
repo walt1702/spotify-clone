@@ -35,13 +35,12 @@ function Header({layout}){
 	const [text,setText] = useState("");
 	const [low,setLow] = useState(true);
 	const [dbValue, saveToDb] = useState(""); 
-	const debouncedSave = useDebounce((nextValue) => saveToDb(nextValue), 300);  
+	const debouncedSave = useDebounce((nextValue) => saveToDb(nextValue), 500);  
 	const handleChange = (event) => {
 		const { value: nextValue } = event.target;
 		setText(nextValue);
 		debouncedSave(nextValue);
 	  };
-	//	const handleChange = text => setText(text.target.value);
 	const dispatch = useDispatch();
 	const {pageName} = useParams();
 //	console.log(pageName);
@@ -91,18 +90,6 @@ function Header({layout}){
 			</div>
 			
 			<div className = "header__right">
-				{/* <div class="navigation">
-				
-					<a class="button" href="">
-						<div className = "userHold">
-							<Avatar alt = "AP" src = {_.get(photo,'[0].url',undefined)}/>
-							<h4>{userName}</h4>
-						</div>
-						<div class="logout" onClick = {()=>dispatch(userLogout())}>Logout</div>
-
-					</a>
-
-				</div> */}
 				<div className = "userHolder" onClick = {()=>{setLow(!low)}}>
 					<Avatar alt = "AP" src = {_.get(photo,'[0].url',undefined)}/>
 					<h4>{userName}</h4>    

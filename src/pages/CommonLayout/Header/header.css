@@ -1,16 +1,19 @@
 .header{
+    z-index: 4;
     display: flex;
     flex: 0.8px;
-    height: 75px;
+    position: fixed;
+    height: 10%;
+    width: 83%;
+    top: 0px;
+    left: 17%;
     justify-content: space-between;
-    margin-bottom: 30px;
-    margin-left: 220px;
+    align-items: center;
+    /* margin-bottom: 30px;
+    margin-left: 220px; */
     color: white;
     background-image: linear-gradient(rgba(18, 18, 18, 0), rgba(18, 18, 18, 0.7));
     background-color:rgb(18,18,18);
-    top: 0px;
-    left: 17%;
-    align-items: center;
     padding: 0px 20px;
 }
 .header__left
@@ -64,6 +67,7 @@
 .header__right{
     display: flex;
     align-items: center;
+    margin-right: 30px;
 }
 
 .header__right>h4{

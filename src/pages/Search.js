@@ -58,8 +58,8 @@ function Search()
                             <div>
                                 {searchItem?.tracks && <Songs songs = {searchItem?.tracks?.tracks?.items} rowName = "Popular"/>}
                                 {searchItem?.artists && <HomePageRow title = "artists" rowName = "Artists" items = {searchItem?.artists?.artists?.items}/>}
-                                {searchItem?.albums && <HomePageRow title = "albums" rowName = "Albums" items = {searchItem?.albums?.albums?.items}/>}
-                                {searchItem?.playlists && <HomePageRow title = "playlists" rowName = "Playlists" items = {searchItem?.playlists?.playlists?.items}/>}
+                                {searchItem?.albums?.albums?.items?.length !== 0 && <HomePageRow title = "albums" rowName = "Albums" items = {searchItem?.albums?.albums?.items}/>}
+                                {searchItem?.playlists?.playlists?.items?.length !== 0 && <HomePageRow title = "playlists" rowName = "Playlists" items = {searchItem?.playlists?.playlists?.items}/>}
                             </div>
                         }
                     </div>
