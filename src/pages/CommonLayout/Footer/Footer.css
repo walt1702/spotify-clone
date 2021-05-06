@@ -9,7 +9,10 @@
     padding: 20px;
     z-index: 5;
 }
-
+.footer__like
+{
+    margin-left: 12px;
+}
 .footer__left{
     flex:0.3;
     display: flex;
