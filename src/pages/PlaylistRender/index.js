@@ -24,11 +24,11 @@ function PlaylistRender()
     useEffect(()=>{
         if(playlistId!==undefined && !playlistDetails)
             dispatch(fetchPlaylistData(playlistId,token));
-        else
+        else if(JSON.stringify(followedTracks) === JSON.stringify([]))
             {
-                dispatch(fetchFollowedTracks(token,20,0));
+//                console.log(followedTracks,"followed tracks");
+                dispatch(fetchFollowedTracks(token,50,0));
             }
-        //https://api.spotify.com/v1/playlists/playlistId/followers/contains?ids=userId
         axios.get(`https://api.spotify.com/v1/playlists/${playlistId}/followers/contains?ids=${user.id}`,{
 			"headers": { 
 				"Authorization": `Bearer ${token}`
