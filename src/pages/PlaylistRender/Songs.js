@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setPlayingTrack } from '../../state/ducks/metaData/actions';
 import './index.css'
-function Songs({songs})
+import { v4 as uuidv4 } from 'uuid';
+function Songs({songs,_key})
 {
     const headerRef = useRef(null);
     const containerRef = useRef(null);
@@ -31,7 +32,7 @@ function Songs({songs})
     }
 
     return (
-        <div className = "tableContainer" ref = {containerRef}>
+        <div className = "tableContainer" ref = {containerRef} key = {_key}>
             <table className = "table">
                 <colgroup>
                     <col style={{width:"5%"}}/>
@@ -55,9 +56,8 @@ function Songs({songs})
 
                 <tbody>
                     {
-                        songs?.map(song=><tr onClick = {()=>
+                        songs?.map(song=><tr key = {uuidv4()} onClick = {()=>
                             {
-                                //console.log("playing track",song.track);
                                 dispatch(setPlayingTrack(song.track));
                             }
                         }>

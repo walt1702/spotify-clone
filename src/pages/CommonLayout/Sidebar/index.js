@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomeIcon from "@material-ui/icons/Home";
 import SearchIcon from "@material-ui/icons/Search";
 import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
@@ -8,13 +8,12 @@ import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { getPlaylistsAndId } from "../../../state/ducks/userCollection/selectors";
 import { useSelector } from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
 
 function Sidebar(){
 	const playlists = useSelector(state=>getPlaylistsAndId(state));
 
 	return(
-
-        
 		<div className = "sidebar">
             
 			<Link to = '/home'>
@@ -57,7 +56,7 @@ function Sidebar(){
 			<div className = "sidebarPlaylists">
 				{
 					playlists.map(item=>
-						<Link to = {`/playlist/${item.id}`}>
+						<Link to = {`/playlist/${item.id}`} key = {uuidv4()}>
 							<div className = "sidebarOption">
 								<p>{item.name}</p>
 							</div>

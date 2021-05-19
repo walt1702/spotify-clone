@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { setPlayingTrack } from '../../state/ducks/metaData/actions';
 import CardContainer from './CardContainer';
 import './component.css'
+import { v4 as uuidv4 } from 'uuid';
 function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
 {
     const history = useHistory();
@@ -62,6 +63,7 @@ function HomePageRow({title,rowName,description = '',isTitleLink = true,items})
                         //Return is important otherwise it won't render
                         
                         return <CardContainer 
+                            key = {uuidv4()}
                             image = {imageUrl} 
                             nameItem = {item.name?item.name:item.track.name}
                             id = {item.id}

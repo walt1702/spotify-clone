@@ -51,11 +51,11 @@ function Header({layout}){
 		<div className = "header">
 			<div className = "header__left">
 				<button title = "Go Back" onClick = {()=>history.goBack()}>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill-rule="evenodd" fill="currentcolor" clip-rule="evenodd"><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z"/></svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fillRule="evenodd" fill="currentcolor" clipRule="evenodd"><path d="M20 .755l-14.374 11.245 14.374 11.219-.619.781-15.381-12 15.391-12 .609.755z"/></svg>
 				</button>
 
 				<button title = "Go Forward" onClick = {()=>history.goForward()}>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill-rule="evenodd" fill="currentcolor" clip-rule="evenodd"><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/></svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fillRule="evenodd" fill="currentcolor" clipRule="evenodd"><path d="M4 .755l14.374 11.245-14.374 11.219.619.781 15.381-12-15.391-12-.609.755z"/></svg>
 				</button>
                 
 				{

@@ -10,6 +10,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import axios from 'axios';
 import Login from '../Login';
+import { v4 as uuidv4 } from 'uuid';
 function PlaylistRender()
 {
     const {playlistId} = useParams();
@@ -35,7 +36,7 @@ function PlaylistRender()
 			} 
 		}).then(res=>{
 			setFollow(res?.data[0]);
-            console.log(follow,"follow");
+            //console.log(follow,"follow");
 		}).catch(err=>{
 			console.log(err);
 		});
@@ -64,7 +65,7 @@ function PlaylistRender()
             :
             <div className = "playlistPage">
             {playlistDetails === undefined?<Loading/>:<>
-            <div className = "introdiv">
+            <div className = "introdiv" key = {uuidv4()}>
                 <img src = {playlistId!==undefined ? playlistDetails?.images[0]?.url : likedTracks} alt = ""/>
                 <div className = "body__infoText">
                     <p className = "boldextra">PLAYLIST</p>
@@ -93,14 +94,7 @@ function PlaylistRender()
                     </button>}
             </div>
 
-                {/* LISTS OF SONGS */}
-{/* 
-                {playlistDetails?.tracks?.items?.map((item)=>(
-                    // <SongRow track = {item.track}/>
-                    console.log(item,"yeah hurray")
-                ))} */}
-
-                <Songs songs = {playlistId!==undefined ? playlistDetails?.tracks?.items : followedTracks}/>
+                <Songs key = {uuidv4()} songs = {playlistId!==undefined ? playlistDetails?.tracks?.items : followedTracks}/>
                 </>
                 }
         </div>
