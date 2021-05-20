@@ -22,6 +22,7 @@ function Login()
 	useEffect(()=>{
 		if(logged){
 			dispatch(fetchUserProfile(accessToken));
+			localStorage.setItem("token", accessToken);
 		}
 	},[logged]);
 

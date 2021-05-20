@@ -15,6 +15,7 @@ const authenticationReducer = (state=initialState,action)=>{
 		oldState.isUserLoggedIn=true;
 		return oldState;
 	case USER_LOGOUT:
+		localStorage.clear();
 		return initialState;
 	case SET_USER_PROFILE:
 		oldState.userProfile={...action.payload.profile};

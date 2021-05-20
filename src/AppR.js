@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import CommonLayout from "./pages/CommonLayout";
 import HomePageRow from "./pages/Components/HomePageRow";
@@ -14,23 +14,39 @@ import AlbumRender from "./pages/AlbumRender";
 import ArtistRender from "./pages/ArtistRender";
 import CategoryRender from "./pages/CategoryRender";
 import BrowseSection from "./pages/BrowseSection";
+import { fetchUserProfile, userLogin } from "./state/ducks/authentication/actions";
+import { fetchUserPlaylists } from "./state/ducks/userCollection";
+import { fetchUserBrowseLastPlayed } from "./state/ducks/userCollection/actions";
 function App () {
 	const playlists = useSelector( state=>state.userCollection.playlists );
 	const artists = useSelector(state=>state.userCollection.following.artists);
 	const albums = useSelector(state=>state.userCollection.following.albums);
     const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
+	const _token = localStorage.getItem("token");
+	const dispatch = useDispatch();
+	useEffect(()=>{
+		if(_token!==null){
+			dispatch(userLogin(_token));
+			dispatch(fetchUserProfile(_token));
+//			if(playlists.length === 0)
+//				dispatch(fetchUserPlaylists(_token,playlists.length)); 
+		}
+	},[])
 	return (
 		<div>
 			<BrowserRouter>
 				<Switch>
 					<Route path = '/' exact>
-						<Login/>
+						{
+							_token !== null?
+							<div>
+								<CommonLayout/> 
+								<HomePage/>
+							</div>
+							:
+							<Login/>
+						}
 					</Route>
-					<Route path = '/home'>
-						<CommonLayout/> 
-						<HomePage/>
-					</Route>
-
 					<Route path = '/home'>
 						<CommonLayout/> 
 						<HomePage/>

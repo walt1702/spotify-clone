@@ -13,7 +13,8 @@ function CategoryRender()
     const dispatch = useDispatch();
     const savedCategories = useSelector(state=>state.userCollection.savedData.categories);
     const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
-    const token = useSelector(state=>state.authentication.token.access_token);
+    //const token = useSelector(state=>state.authentication.token.access_token);
+    const token = localStorage.getItem("token");
     useEffect(()=>{
         if(savedCategories[categoryId] === undefined)
             dispatch(fetchCategoryData(categoryId,'IN',0,20,token));

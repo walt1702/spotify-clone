@@ -17,7 +17,8 @@ function AlbumRender()
     const {albumId} = useParams();
     const dispatch = useDispatch();
     const savedAlbums = useSelector(state=>state.userCollection.savedData.albums);
-    const token = useSelector(state=>state.authentication.token.access_token);
+    //const token = useSelector(state=>state.authentication.token.access_token);
+    const token = localStorage.getItem("token");
     const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
     let albumDetails = savedAlbums[albumId];
 
