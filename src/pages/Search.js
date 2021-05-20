@@ -12,7 +12,8 @@ function Search()
 {
     //fetchSearch = (accessToken,query,type,offset = 0,limit = 5)
     const searchText = useSelector(state=>state.metaData.searchText);
-    const token = useSelector(state=>state.authentication.token.access_token);
+    //const token = useSelector(state=>state.authentication.token.access_token);
+    const token = localStorage.getItem("token");
     const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
     const dispatch = useDispatch();
 

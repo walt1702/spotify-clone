@@ -10,16 +10,17 @@ function HomePage()
 {
 	const [loading,setLoading] = useState(false);
 	const dispatch = useDispatch();
-	const token = useSelector(state=>state.authentication.token.access_token);
+	//const token = useSelector(state=>state.authentication.token.access_token);
+	const token = localStorage.getItem("token");
 	const playlists = useSelector(state=>state.userCollection.playlists);
-	const savedPlaylists = useSelector(state=>state.userCollection.savedData.playlists);
 	const browse = useSelector(state=>state.userCollection.browse);
 	const lastPlayed = useSelector(state=>state.userCollection.browse.lastPlayed);
 	const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
 	const followedArtists = useSelector(state=>state.userCollection.following.artists);
 
 	useEffect(()=>{
-		dispatch(fetchUserPlaylists(token,playlists.length));   //Finding out Users playlist
+		if(playlists.length < 5)
+			dispatch(fetchUserPlaylists(token,playlists.length));   //Finding out Users playlist
 		if(lastPlayed.length < 5)
 			dispatch(fetchUserBrowseLastPlayed(token,"",5));
 		//else
@@ -39,16 +40,6 @@ function HomePage()
 				dispatch(fetchUserBrowseFeatured(token,"IN",browse.featured.length,5));    
 		}
 	},[isUserLoggedIn]);
-
-	useEffect(()=>{
-		if(isUserLoggedIn)
-		{
-			playlists.forEach(element => {
-				if(!savedPlaylists[element.id])
-					dispatch(fetchPlaylistData(element.id,token));
-			});
-		}
-	},[isUserLoggedIn,playlists]);
 
 	return (
 		<div>

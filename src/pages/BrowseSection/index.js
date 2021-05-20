@@ -10,7 +10,8 @@ function BrowseSection()
 {
     const {section} = useParams();
     const browse = useSelector(state=>state.userCollection.browse);
-    const token = useSelector(state=>state.authentication.token.access_token);
+    //const token = useSelector(state=>state.authentication.token.access_token);
+    const token = localStorage.getItem("token");
     const dispatch = useDispatch();
     const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
     console.log(section);

@@ -16,7 +16,8 @@ function PlaylistRender()
     const dispatch = useDispatch();
     const savedPlaylists = useSelector(state=>state.userCollection.savedData.playlists);
     const followedTracks = useSelector(state=>state.userCollection.following.tracks);
-    const token = useSelector(state=>state.authentication.token.access_token);
+    //const token = useSelector(state=>state.authentication.token.access_token);
+    const token = localStorage.getItem("token");
     const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
     let playlistDetails = savedPlaylists[playlistId];
     const user = useSelector(state=>state.authentication.userProfile);

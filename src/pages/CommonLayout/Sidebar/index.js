@@ -11,19 +11,16 @@ import { useSelector } from "react-redux";
 
 function Sidebar(){
 	const playlists = useSelector(state=>getPlaylistsAndId(state));
-
 	return(
-
-        
 		<div className = "sidebar">
             
-			<Link to = '/home'>
+			<Link to = '/'>
 				<img className = "sidebar__logo"
 					src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
 					alt=""/>
 			</Link>
 
-			<Link to = '/home'>
+			<Link to = '/'>
 				<div className = "sidebarOption">
 					<HomeIcon className = "sidebarOption__icon"/>
 					<h4>Home</h4>

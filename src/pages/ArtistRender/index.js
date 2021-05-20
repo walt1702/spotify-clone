@@ -13,7 +13,8 @@ function ArtistRender()
 {
     const {artistId} = useParams();
     const dispatch = useDispatch();
-    const token = useSelector(state=>state.authentication.token.access_token);
+    //const token = useSelector(state=>state.authentication.token.access_token);
+    const token = localStorage.getItem("token");
     const isUserLoggedIn = useSelector(state=>state.authentication.isUserLoggedIn);
     const artist = useSelector(state=>state.userCollection.artist);
     const followedArtists = useSelector(state=>state.userCollection.following.artists);

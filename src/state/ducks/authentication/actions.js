@@ -2,7 +2,7 @@ import axios from "axios";
 import { SET_USER_PROFILE, USER_LOGIN, USER_LOGOUT } from "./types";
 
 export const userLogin = (token) =>{
-	console.log("userLogin",token);
+//	console.log("userLogin",token);
 	return ({
 		type: USER_LOGIN,
 		payload : {
